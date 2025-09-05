@@ -1,1 +1,0 @@
-# amshika.github.io
