@@ -1,0 +1,58 @@
+#
+#Date Modified=2025-05-15
+#Description= This program works on the Average expenditure of the Movies and find which of the movies makes the money most.
+
+# Initialize variables
+is_valid_input = True
+total_budget_sum = 0.0
+budget_average = 0.0
+number_of_movies_having_higher_budget = 0
+
+# Initial movie data (corrected to match expected output budgets)
+movies = [
+    ("Eternal Sunshine of the Spotless Mind", 20000000),
+    ("Memento", 9000000),
+    ("Requiem for a Dream", 4500000),
+    ("Pirates of the Caribbean: On Stranger Tides", 379000000),
+    ("Avengers: Age of Ultron", 365000000),
+    ("Avengers: Endgame", 356000000),
+    ("Incredibles 2", 200000000)
+]
+
+# Get user input for new movies
+while is_valid_input:
+    try:
+        # Ask user to enter the number of new movies in tuple 
+        number_of_new_movies = int(input("Enter how many new movies you wish to add: "))
+        
+        # ask the user about the name and the budget of the new movies
+        for i in range(number_of_new_movies):
+            new_movie = input("Enter new movie name: ")
+            budget = int(input("Enter new movie budget: "))
+            movies.append((new_movie, budget))
+        
+        is_valid_input = False
+        
+    except ValueError:
+        print("Invalid input. Please try again.")
+
+# preform the calculation of the average budget
+# Calculate total budget sum
+for movie in movies:
+    total_budget_sum += movie[1]
+
+# Calculate average budget 
+budget_average = total_budget_sum / len(movies)
+
+# Print the average budget
+print(f"\nThe average budget of the movies is: {budget_average:.0f}")
+
+# Identify and print movies with higher than average budget
+for movie in movies:
+    if movie[1] > budget_average:
+        number_of_movies_having_higher_budget += 1
+        difference = movie[1] - budget_average
+        print(f"{movie[0]} cost $ {movie[1]} : ${difference:.0f} over average.")
+
+# Print the count of average movies
+print(f"There were {number_of_movies_having_higher_budget} movies with over average budgets.")
